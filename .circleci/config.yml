@@ -19,6 +19,8 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then \
               curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+              apt-get update -y
+              apt-get install -y unzip
               unzip awscli-bundle.zip
               ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
               aws s3 sync public s3://www.jonbretman.co.uk
